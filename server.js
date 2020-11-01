@@ -61,15 +61,19 @@ app.set('view  engine' , 'ejs');
 app.use(express.static('./public'));
 // ----------------------------------static Folders--------
 
-app.get('/', (req, res) => res.render('index.ejs'));
+app.get('/', (req, res) => res.render('main/index.ejs'));
 
-
+app.get('/add', (req, res) => res.render('views/employee/index.ejs'));
 
 
 app.use(bodyparser.json());
 app.set('views', path.join(__dirname, '/views/'));
+// app.get('add', path.join(__dirname, '/views/addOrEdit'));
 app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
 app.set('view engine', 'hbs');
+// app.use( express.static( "public" ) );
+app.use( express.static( "views" ) );
+
 
 
 app.post('/upload', (req, res) => {
